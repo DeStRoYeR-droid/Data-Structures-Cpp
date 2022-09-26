@@ -2,6 +2,11 @@
   "files.associations": {
     "iostream": "cpp",
     "tuple": "cpp",
-    "xutility": "cpp"
+    "xutility": "cpp",
+    "xstring": "cpp",
+    "system_error": "cpp",
+    "type_traits": "cpp",
+    "xlocnum": "cpp",
+    "xtr1common": "cpp"
   }
 }
