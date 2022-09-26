@@ -39,6 +39,7 @@ The following data structures and algorithms have been discussed so far -
                 <li> <a href = "https://en.wikipedia.org/wiki/Tridiagonal_matrix"> Tridiagonal Matrix </a>
                 <li> <a href = "https://en.wikipedia.org/wiki/Triangular_matrix"> Upper Triangular Matrix </a>
             </ul>
+            <li> <a href = "https://en.wikipedia.org/wiki/Linked_list">Linked List</a>
         </ul>
 
 </details>
