@@ -158,25 +158,61 @@ class LinkedList{
 
             return temp;
         }
+
+        void deleteNode(int position){
+            if (position > getLength()) throw "OutOfBoundsException";
+            if (position == 1){
+                Node* temp = head;
+                head = head->next;
+                delete temp;
+                return;
+            }
+
+            int cur_pos = 1;
+            Node* trailer;
+            Node* temp = head;
+            while (cur_pos < position){
+                trailer = temp;
+                temp = temp->next;
+                cur_pos++;
+            }
+            
+            trailer->next = temp->next;
+            delete temp;
+        }
         
+        void deleteNode(const LinkedList& oth){
+            Node* temp = oth.head;
+            int deleted = 0;
+
+            while (temp != NULL){
+                deleteNode(temp->value - deleted);
+                deleted++;
+                temp = temp->next;
+            }
+
+            return;
+        }
 };
 
 int main(){
     LinkedList l1(20);
     l1.addFront(10);
     l1.addBack(30);
+    l1.addBack(40);
+    l1.addBack(50);
+    l1.addBack(60);
+    l1.addBack(70);
 
     l1.print();
 
-    LinkedList l2(5);
-    l2.addBack(15);
-    l2.addBack(25);
-
-    l2.print();
+    LinkedList l2;
+    l2.addBack(1);
+    l2.addBack(3);
+    l2.addBack(5);
+    l2.addBack(6);
     
-    LinkedList l3 = l1.merge(l2);
-
-
-    l3.print();
+    l1.deleteNode(l2);
+    l1.print();
     return 0;
 }

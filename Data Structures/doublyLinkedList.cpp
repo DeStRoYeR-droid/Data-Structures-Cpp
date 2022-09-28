@@ -42,12 +42,21 @@ class doublyLinkedList{
             header->next = temp;
         }
 
+        void addBack(int value){
+            doubleLinkNode* temp = new doubleLinkNode(value);
+            temp->next = trailer;
+            temp->prev = trailer->prev;
+            trailer->prev->next = temp;
+            trailer->prev = temp;
+        }
+
         void print() const{
             doubleLinkNode* temp = this->header->next;
-            while (temp != this->trailer){
-                cout << temp->value << " ";
+            while (temp != this->trailer->prev){
+                cout << temp->value << "->";
                 temp = temp->next;
             }
+            cout << temp->value << endl;
         }
 };
 
@@ -55,6 +64,6 @@ int main(){
     doublyLinkedList dll;
     dll.addFront(4);
     dll.addFront(5);
-    dll.addFront(6);
+    dll.addBack(6);
     dll.print();
 }
