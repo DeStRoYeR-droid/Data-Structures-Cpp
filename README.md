@@ -12,9 +12,9 @@ The following data structures and algorithms have been discussed so far -
     <summary> Sorting Algorithms
     </summary>
     <ul type = "disc">
-        <li> <a href = "https://en.wikipedia.org/wiki/Bubble_sort"> Bubble sort (✔) </a>
-        <li> <a href = "https://en.wikipedia.org/wiki/Insertion_sort"> Insertion sort (✔) </a>
-        <li> <a href = "https://en.wikipedia.org/wiki/Selection_sort"> Selection sort (✔) </a>
+        <li>  Bubble sort (✔) </a>
+        <li>  Insertion sort (✔) </a>
+        <li>  Selection sort (✔) </a>
     </ul>
 </details>
 
@@ -22,8 +22,8 @@ The following data structures and algorithms have been discussed so far -
     <summary> Searching Algorithms
     </summary>
         <ul type = "disc">
-            <li><a href = "https://en.wikipedia.org/wiki/Binary_search_algorithm"> Binary Search (✔) </a>
-            <li><a href = "https://en.wikipedia.org/wiki/Linear_search"> Linear Search (✔)</a>
+            <li> Binary Search (✔) </a>
+            <li> Linear Search (✔)</a>
         </ul>
 
 </details>
@@ -31,16 +31,18 @@ The following data structures and algorithms have been discussed so far -
     <summary> Data Structures
     </summary>
         <ul type = "disc">
-            <li> <a href = "https://en.wikipedia.org/wiki/Matrix_(mathematics)">Matrices </a> 
+            <li> Matrices </a> 
             <ul>
-                <li> <a href = "https://en.wikipedia.org/wiki/Diagonal_matrix"> Diagonal Matrix (✔) </a>
-                <li> <a href = "https://en.wikipedia.org/wiki/Triangular_matrix"> Lower Triangular Matrix (✔) </a>
-                <li> <a href = "https://en.wikipedia.org/wiki/Symmetric_matrix"> Symmetric Matrix (✔) </a>
-                <li> <a href = "https://en.wikipedia.org/wiki/Tridiagonal_matrix"> Tridiagonal Matrix (✔) </a>
-                <li> <a href = "https://en.wikipedia.org/wiki/Triangular_matrix"> Upper Triangular Matrix (✔) </a>
+                <li>  Diagonal Matrix (✔) </a>
+                <li>  Lower Triangular Matrix (✔) </a>
+                <li>  Symmetric Matrix (✔) </a>
+                <li>  Tridiagonal Matrix (✔) </a>
+                <li>  Upper Triangular Matrix (✔) </a>
             </ul>
-            <li> <a href = "https://en.wikipedia.org/wiki/Linked_list">Linked List (❌)</a>
-            <li> <a href = "https://en.wikipedia.org/wiki/Doubly_linked_list">Doubly Linked List (❌)</a>
+            <ul> Linked List (✔)</a>
+                <li> Sorted Singly Linked List (✔)
+            </ul>
+            <li> Doubly Linked List (❌)</a>
         </ul>
 
 </details>

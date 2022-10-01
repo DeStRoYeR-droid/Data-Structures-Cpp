@@ -51,6 +51,7 @@ class singlyLinkedList{
 			delete head, tail, size;
 		}
 		
+        // Method to get the size of linked list
 		int getSize() const { return size;}
 		
 		// Method to check if linked list is empty or not
@@ -105,6 +106,7 @@ class singlyLinkedList{
             size--;
         }
 
+        // Method to remove the tail
         void removeTail(){
         	if (empty()) throw "Underflow";
         	
@@ -123,6 +125,7 @@ class singlyLinkedList{
 			size--;
 		}
 		
+        // Method to remove an element at any given position
 		void removePos(int position){
 			if (empty()) throw "Underflow";
 			if (position < 0 || position > size) throw "PositionError";
@@ -144,6 +147,7 @@ class singlyLinkedList{
 			}
 		}
 		
+        // Method to insert value at any given position
 		void insertPos(int value , int position){
 			if (position < 0 || position-1 > size) throw "PositionError";
 			
@@ -163,6 +167,7 @@ class singlyLinkedList{
 			}
 		}
 
+        // Method to get the value at any given position
         int getValue(int position) const {
             if (position < 0 || position-1 > size) throw "InvalidPositionError";
             else{
@@ -177,6 +182,7 @@ class singlyLinkedList{
             }
         }
 		
+        // Method to concatenate the values from one linked list to another
 		void concatenate(singlyLinkedList& other){
 			if (empty() && other.empty()) return;
 			else if (other.empty()) return;
@@ -194,6 +200,7 @@ class singlyLinkedList{
             other.size = 0;
 		}
 		
+        // Method to return first instanct of the node with any given value
 		Node* search(int value) const{
             Node* temp = head;
             while (temp != NULL && temp->value != value){
@@ -215,10 +222,12 @@ class sortedSinglyLinkedList : private singlyLinkedList{
         using singlyLinkedList::print;
         using singlyLinkedList::search;
     
+        // Default constructutor
         sortedSinglyLinkedList() : singlyLinkedList(){}
-
+        // Parameterized constructor
         sortedSinglyLinkedList(int value) : singlyLinkedList(value){}
 
+        // Method to insert value whilst maintaining order
         void insert(int value){
             if (empty()) addFront(value);
             else{
@@ -232,7 +241,7 @@ class sortedSinglyLinkedList : private singlyLinkedList{
             }
         }
 
-        // Deletes first instance of value
+        // Method to delete the first instance of value
         void deleteValue(int value){
             if (empty()) throw "Underflow";
             bool found = false;
@@ -247,7 +256,7 @@ class sortedSinglyLinkedList : private singlyLinkedList{
             if (!found) throw "ValueNotFoundException";
         }
 
-
+        // Merge this list with another sorted linked list to result in another sorted linked list
         sortedSinglyLinkedList merge(const sortedSinglyLinkedList& oth){
             int thisPos = 1;
             int othPos = 1;
