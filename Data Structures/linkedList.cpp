@@ -210,6 +210,25 @@ class singlyLinkedList{
             if (temp) return temp;
             return NULL;
         }
+
+        void reverse(){
+            if (size < 2){
+                // Literally do nothing
+                return;
+            }
+            Node* temp = head;
+            Node* prev = NULL;
+            Node* next = NULL;
+
+            while (temp != NULL){
+                next = temp->next;
+                temp->next = prev;
+
+                prev = temp;
+                temp = next;
+            }
+            head = prev;
+        }
 };
 
 class sortedSinglyLinkedList : private singlyLinkedList{
@@ -326,7 +345,7 @@ int main(){
         */
         
 
-       /*
+       
         singlyLinkedList l1;
         l1.addFront(12);
         l1.addFront(75);
@@ -334,15 +353,9 @@ int main(){
         l1.addFront(31);
         l1.insertPos(18 , 3);
 
-        singlyLinkedList l2;
-        l2.addFront(91);
-        l2.addBack(100);
-
-        l1.concatenate(l2);
-
         l1.print();
-        l2.print();
-        */
+        l1.reverse();
+        l1.print();
 
 	} catch (const char* exp){
 		cout << "Exception occurred : " << exp << endl;
