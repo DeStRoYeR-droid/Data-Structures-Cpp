@@ -60,13 +60,13 @@ class CircularLinkedList{
             advance();
         }
 
-        void display(string nextPtr = " "){
+        void display(string start = "", string nextPtr = " ", string endPtr = ""){
             if (cursor == NULL) throw "EmptyList";
 
             Node<T>* traverser = cursor->next;
 
             do{
-                cout << traverser->value << nextPtr;
+                cout << start << traverser->value << nextPtr << endPtr;
                 traverser = traverser->next;
             } while (traverser != cursor->next);
         }
@@ -88,10 +88,13 @@ class Song{
         }
 
         friend ostream& operator << (ostream& out, const Song& obj){
-            out << obj.song_name;
-            int no_tabs = 6 - obj.song_name.size()/8;
+            out << "\t" << obj.song_name;
+            int no_tabs = 5 - obj.song_name.size()/8;
             for (int i = 0; i < no_tabs; i++) out << "\t";
-            out << "|\t\t" << obj.artist_name << endl;
+            out << "|\t\t" << obj.artist_name;
+
+            no_tabs = 4 - obj.artist_name.size()/8;
+            for (int i = 0; i < no_tabs; i++) out << "\t";
             return out;
         }
 
@@ -109,7 +112,20 @@ class Playlist : private CircularLinkedList<Song>{
             addBack(s);
         }
 
-        void show(){ this->display(""); }
+        void show(){ 
+            for (int i = 0; i < 97; i++){ cout << "-";}
+            cout << endl;
+            
+            cout << "|\t\t\t Song\t\t\t|\t\t\t Artist \t\t|" << endl;
+            
+            for (int i = 0; i < 97; i++){ cout << "-";}
+            cout << endl;
+            
+            this->display("|" , "|" , "\n"); 
+            
+            for (int i = 0; i < 97; i++){ cout << "-";}
+            cout << endl;
+        }
 };
 
 int main(){
