@@ -1,0 +1,122 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+template <typename T>
+class Node{
+    private:
+        T value;
+        Node* next;
+
+    public:
+        Node(T value){
+            this->value = value;
+            next = NULL;
+        }
+
+        template <typename U> friend class CircularLinkedList;
+};
+
+template <typename T>
+class CircularLinkedList{
+    private:
+        Node<T>* cursor;
+    
+    public:
+        CircularLinkedList(){
+            cursor= NULL;
+        }
+
+        ~CircularLinkedList(){
+            
+        }
+
+        bool empty() const{
+            return (cursor == NULL);
+        }
+        
+        void advance(){
+            if (empty()) throw "EmptyList";
+
+            cursor = cursor->next;
+        }
+
+        void addFront(T element){
+            Node<T>* temp = new Node<T>(element);
+            
+            if (cursor == NULL){
+                temp->next = temp;
+                cursor = temp;
+            }
+            else {
+                temp->next = cursor->next;
+                cursor->next = temp;
+            }
+        }
+
+        void addBack(T element){
+            addFront(element);
+            advance();
+        }
+
+        void display(string nextPtr = " "){
+            if (cursor == NULL) throw "EmptyList";
+
+            Node<T>* traverser = cursor->next;
+
+            do{
+                cout << traverser->value << nextPtr;
+                traverser = traverser->next;
+            } while (traverser != cursor->next);
+        }
+};
+
+class Song{
+    private:
+        string song_name;
+        string artist_name;
+
+    public:
+        Song(){
+            this->song_name = "";
+            this->artist_name = "";
+        }
+        Song(string song_name , string artist_name){
+            this->song_name = song_name;
+            this->artist_name = artist_name;
+        }
+
+        friend ostream& operator << (ostream& out, const Song& obj){
+            out << obj.song_name;
+            int no_tabs = 6 - obj.song_name.size()/8;
+            for (int i = 0; i < no_tabs; i++) out << "\t";
+            out << "|\t\t" << obj.artist_name << endl;
+            return out;
+        }
+
+        friend class Playlist;
+};
+
+class Playlist : private CircularLinkedList<Song>{
+    private:
+        using CircularLinkedList<Song>::display;
+    public:
+        Playlist() : CircularLinkedList<Song>(){}
+
+        void add(string song, string artist){
+            Song s(song, artist);
+            addBack(s);
+        }
+
+        void show(){ this->display(""); }
+};
+
+int main(){
+    Playlist p1;
+    p1.add("The end is where we begin" , "Thousand Foot Krutch");
+    p1.add("Give Me Back My Life" , "Papa Roach");
+    p1.add("Lucky One" , "Simple Plan");
+
+    p1.show();
+}

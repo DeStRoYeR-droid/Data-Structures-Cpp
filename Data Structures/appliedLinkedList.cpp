@@ -148,7 +148,7 @@ class SinglyLinkedList{
 			}
 		}
 
-        T getValue(int position) const {
+        T& getValue(int position) {
             if (position < 0 || position-1 > size) throw "InvalidPositionError";
             else{
                 int cur_pos = 1;
@@ -170,6 +170,7 @@ class SortedSinglyLinkedList : private SinglyLinkedList<T>{
         using SinglyLinkedList<T>::addFront;
         using SinglyLinkedList<T>::addBack;
         using SinglyLinkedList<T>::insertPos;
+
     public:
 	 	using SinglyLinkedList<T>::removeHead;
 		using SinglyLinkedList<T>::removeTail;
@@ -221,7 +222,7 @@ class Term{
         }
 
         friend ostream& operator << (ostream& out, const Term& t){
-            out << "Coeff   : " << t.power << "\tPower   : " << t.coeff;
+            out << "Coeff   : " << t.coeff << "\tPower   : " << t.power;
 
             return out;
         }
@@ -229,6 +230,13 @@ class Term{
         bool operator > (const Term& oth){
             return (this->power > oth.power);
         } 
+        
+        Term operator + (const Term& oth){
+            Term result;
+            result.power = this->power + oth.power;
+            result.coeff = this->coeff + oth.coeff;
+            return result;
+        }
 
         friend class Polynomial;
 };
@@ -245,6 +253,13 @@ class Polynomial : private SortedSinglyLinkedList<Term>{
 
         void addTerm(int power, int coeff){
             Term temp(power , coeff);
+            for (int i = 1; i <= this->getSize(); i++){
+                if (getValue(i).power == temp.power){
+                    Term newValue = getValue(i) + temp;
+                    getValue(i) = newValue;
+                    return;
+                }
+            }
             insert(temp);
         }
 
@@ -260,6 +275,9 @@ int main(){
     p1.addTerm(0, 1);
     p1.addTerm(0, 2);
     p1.addTerm(0, 4);
+    p1.addTerm(1, 9);
+    p1.addTerm(2, 3);
+    p1.addTerm(7, 2);
     p1.print();
     return 0;
 }
