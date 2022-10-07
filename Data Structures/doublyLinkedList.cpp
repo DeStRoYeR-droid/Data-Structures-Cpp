@@ -135,30 +135,21 @@ class bigNumber : private doublyLinkedList<int>{
                 othPointer = othPointer->prev;
             }
 
-            if (thisPointer != header){
-                while (thisPointer != header){
-                    sum_terms = thisPointer->value + carry;
-
-                    carry = sum_terms / 10000;
-                    sum_terms = sum_terms % 10000;
-
-                    result.addFront(sum_terms);
-                    
-                    thisPointer = thisPointer->prev;
-                }
+            while (thisPointer != header){
+                sum_terms = thisPointer->value + carry;
+                carry = sum_terms / 10000;
+                sum_terms = sum_terms % 10000;
+                result.addFront(sum_terms);
+                
+                thisPointer = thisPointer->prev;
             }
 
-            if (othPointer != other.header){
-                while (othPointer != other.header){
-                    sum_terms = othPointer->value + carry;
-
-                    carry = sum_terms / 10000;
-                    sum_terms = sum_terms % 10000;
-
-                    result.addFront(sum_terms);
-
-                    othPointer = othPointer->prev;
-                }
+            while (othPointer != other.header){
+                sum_terms = othPointer->value + carry;
+                carry = sum_terms / 10000;
+                sum_terms = sum_terms % 10000;
+                result.addFront(sum_terms);
+                othPointer = othPointer->prev;
             }
 
             if (carry){
@@ -169,9 +160,17 @@ class bigNumber : private doublyLinkedList<int>{
         }
 
         void print() const{
-            doubleLinkNode<int>* temp = this->header->next;
+            doubleLinkNode<int>* temp = header->next;
+            cout << temp->value;
+            temp = temp->next;
             while (temp != trailer){
-                cout << temp->value;
+                int value = temp->value; 
+                
+                if (value < 10) cout << "000" << value;
+                else if (value < 100) cout << "0" << value;
+                else if (value < 1000) cout << "00" << value;
+                else cout << value;
+
                 temp = temp->next;
             }
             cout << endl;
@@ -179,11 +178,11 @@ class bigNumber : private doublyLinkedList<int>{
 };
 
 int main(){
-    string number = "992491249999";
+    string number = "99999999";
     bigNumber b1(number);
     b1.print();
 
-    string number2 = "99999";
+    string number2 = "1";
     bigNumber b2(number2);
     b2.print();
 

@@ -60,6 +60,39 @@ class CircularLinkedList{
             advance();
         }
 
+        void removeFront(){
+            if (empty()) throw "UnderFlowError";
+
+            Node<T>* temp = cursor->next;
+            if (temp == cursor){
+                cursor = NULL;
+            }
+            else{
+                cursor->next = temp->next;
+            }
+            delete temp;
+        }
+
+        void removeBack(){
+            if (empty()) throw "UnderFlowError";
+
+            Node<T>* temp = cursor;
+            if (temp->next == cursor){
+                cursor = NULL;
+            }
+            else{
+                Node<T>* trailer = temp->next;
+
+                cursor = cursor->next;
+                while (trailer->next != temp){
+                    trailer = trailer->next;
+                }
+                trailer->next = cursor;
+            }
+
+            delete temp;
+        }
+
         void display(string start = "", string nextPtr = " ", string endPtr = ""){
             if (cursor == NULL) throw "EmptyList";
 
@@ -104,8 +137,10 @@ class Song{
 
 class Playlist : private CircularLinkedList<Song>{
     private:
-        using CircularLinkedList<Song>::display;
     public:
+        using CircularLinkedList<Song>::removeFront;
+        using CircularLinkedList<Song>::removeBack;
+
         Playlist() : CircularLinkedList<Song>(){}
 
         void add(string song, string artist){
@@ -134,6 +169,9 @@ int main(){
     p1.add("The end is where we begin" , "Thousand Foot Krutch");
     p1.add("Give Me Back My Life" , "Papa Roach");
     p1.add("Lucky One" , "Simple Plan");
+    p1.add("Coming Home" , "Avenged Sevenfold");
 
+    p1.show();
+    p1.removeFront();
     p1.show();
 }
