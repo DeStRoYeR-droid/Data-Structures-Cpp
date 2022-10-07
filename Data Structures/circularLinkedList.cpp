@@ -83,11 +83,12 @@ class CircularLinkedList{
             else{
                 Node<T>* trailer = temp->next;
 
-                cursor = cursor->next;
                 while (trailer->next != temp){
                     trailer = trailer->next;
                 }
-                trailer->next = cursor;
+                cursor = trailer;
+                cursor->next = temp->next;
+
             }
 
             delete temp;
@@ -172,6 +173,6 @@ int main(){
     p1.add("Coming Home" , "Avenged Sevenfold");
 
     p1.show();
-    p1.removeFront();
+    p1.removeBack();
     p1.show();
 }
