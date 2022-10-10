@@ -42,14 +42,14 @@ The following data structures and algorithms have been discussed so far -
             </ul>
             </details>
             <details>
-            <summary> Linked List (✔) </summary>
+            <summary> Linked List </summary>
                 <ul type = "circle">
                     <li> Sorted Singly Linked List (✔)
                     <li> Doubly Linked List (✔)
                 </ul>
             </details>
             <details>
-            <summary> Stack(✔) </summary>
+            <summary> Stack </summary>
                 <ul type = "circle">
                     <li> Using array (✔)
                     <li> Using linked list (❌)
