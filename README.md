@@ -31,7 +31,8 @@ The following data structures and algorithms have been discussed so far -
     <summary> Data Structures
     </summary>
         <ul type = "disc">
-            <li> Matrices </a> 
+            <details>
+            <summary> Matrices </summary>
             <ul>
                 <li>  Diagonal Matrix (✔) 
                 <li>  Lower Triangular Matrix (✔) 
@@ -39,16 +40,21 @@ The following data structures and algorithms have been discussed so far -
                 <li>  Tridiagonal Matrix (✔) 
                 <li>  Upper Triangular Matrix (✔) 
             </ul>
-            <li> Linked List (✔)
+            </details>
+            <details>
+            <summary> Linked List (✔) </summary>
                 <ul type = "circle">
                     <li> Sorted Singly Linked List (✔)
+                    <li> Doubly Linked List (✔)
                 </ul>
-            <li> Doubly Linked List (✔)
-            <li> Stack(✔)
+            </details>
+            <details>
+            <summary> Stack(✔) </summary>
                 <ul type = "circle">
                     <li> Using array (✔)
                     <li> Using linked list (❌)
                 </ul>
+            </details>
         </ul>
 
 </details>
