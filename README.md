@@ -33,16 +33,22 @@ The following data structures and algorithms have been discussed so far -
         <ul type = "disc">
             <li> Matrices </a> 
             <ul>
-                <li>  Diagonal Matrix (✔) </a>
-                <li>  Lower Triangular Matrix (✔) </a>
-                <li>  Symmetric Matrix (✔) </a>
-                <li>  Tridiagonal Matrix (✔) </a>
-                <li>  Upper Triangular Matrix (✔) </a>
+                <li>  Diagonal Matrix (✔) 
+                <li>  Lower Triangular Matrix (✔) 
+                <li>  Symmetric Matrix (✔) 
+                <li>  Tridiagonal Matrix (✔) 
+                <li>  Upper Triangular Matrix (✔) 
             </ul>
-            <ul> Linked List (✔)</a>
-                <li> Sorted Singly Linked List (✔)
-            </ul>
-            <li> Doubly Linked List (❌)</a>
+            <li> Linked List (✔)
+                <ul type = "circle">
+                    <li> Sorted Singly Linked List (✔)
+                </ul>
+            <li> Doubly Linked List (✔)
+            <li> Stack(✔)
+                <ul type = "circle">
+                    <li> Using array (✔)
+                    <li> Using linked list (❌)
+                </ul>
         </ul>
 
 </details>
