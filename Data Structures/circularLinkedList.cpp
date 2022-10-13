@@ -29,7 +29,8 @@ class CircularLinkedList{
         }
 
         ~CircularLinkedList(){
-            
+            while (!empty()){removeFront();}
+            delete cursor;
         }
 
         bool empty() const{
@@ -70,8 +71,7 @@ class CircularLinkedList{
             else{
                 cursor->next = temp->next;
             }
-            delete temp;
-        }
+            delete temp;        }
 
         void removeBack(){
             if (empty()) throw "UnderFlowError";

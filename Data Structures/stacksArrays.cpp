@@ -79,6 +79,7 @@ int main(){
         s.push(13);
         s.push(14);
         s.push(15);
+        s.print();
         s.push(16);
     }
     catch (Underflow ue){
