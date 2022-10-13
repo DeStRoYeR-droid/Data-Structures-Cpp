@@ -173,6 +173,7 @@ class BigNumber{
 			}
 			this->stringVal = value;
 		}
+        int getSize();
 		void showNumber();
 		BigNumber operator + (const BigNumber& other);
 		friend ostream& operator << (ostream& out , const BigNumber& obj){
@@ -215,7 +216,9 @@ BigNumber BigNumber::operator +(const BigNumber& other){
 	}
 	return result;
 }
-
+int BigNumber::getSize(){
+    return this->stringVal.size();
+}
 
 void additionBignumbers(){
     BigNumber result;
@@ -223,6 +226,7 @@ void additionBignumbers(){
     BigNumber* numbers;
     string value;
     int n;
+    int size;
     int lenValue = 0;
     cout << "How many numbers do you want to add ";
     cin >> n;
@@ -242,21 +246,31 @@ void additionBignumbers(){
 
         numbers[i] = term;
     }
-
+    cout << endl;
+    
     for (int i = 0; i < n; i++){
+        size = numbers[i].getSize();
         if (i == 0){
-            cout << '\t' << numbers[i] << endl;
+            cout << "\t";
+            for (int i = 0; i < lenValue - size; i++){
+                cout << " ";
+            }
+            cout << numbers[i] << endl;
         }
         else {
-            cout << "+\t" << numbers[i] << endl;
+            cout << "+\t";
+            for (int i = 0; i < lenValue - size; i++){
+                cout << " ";
+            }
+            cout << numbers[i] << endl;
         }
     }
-    for (int i = 0; i < lenValue+14; i++){
+    for (int i = 0; i < lenValue+10; i++){
         cout << "-";
     }
     cout << endl << '\t' << result << endl;
 
-    for (int i = 0; i < lenValue+14; i++){
+    for (int i = 0; i < lenValue+10; i++){
         cout << "-";
     }
 }
