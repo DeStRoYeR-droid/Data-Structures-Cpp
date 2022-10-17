@@ -16,7 +16,18 @@ class Overflow : public exception{
 	    	return "Overflow : Memory limit exceeded";
 	    }
 };
-
+class InvalidExpression : public runtime_error{
+	private: 
+		const char* msg;
+	public:
+		InvalidExpression(const char* what = "") : 
+			runtime_error(what){
+				this->msg = what;
+			}  
+	    const char * what() const throw(){
+	    	return this->msg;
+	    }
+};
 // Node class 
 template <typename T> class Node{
     private:
@@ -133,6 +144,8 @@ template <typename T> class Stack{
 		
 		T pop();
         T top();
+
+		int getSize();
 };
 template <typename T> void Stack<T>::print(){
 	this->stack.print("");
@@ -149,6 +162,9 @@ template <typename T> T Stack<T>::top(){
 }
 template <typename T> bool Stack<T>::empty(){
 	return this->stack.empty();
+}
+template <typename T> int Stack<T>::getSize(){
+	return this->stack.getSize();
 }
 
 class BigNumber{
@@ -275,7 +291,70 @@ void additionBignumbers(){
     }
 }
 
+int calculateExpression(int operand1, int operand2, char symbol){
+	int result;
+	switch(symbol){
+		case '+':
+			result = operand1 + operand2;
+			break;
+
+		case '-':
+			result = operand1 - operand2;
+			break;
+
+		case '/':
+			result = operand1 / operand2;
+			break;
+
+		case '*':
+			result = operand1 * operand2;
+			break;
+
+		case '^':
+			result = 1;
+			for (int i = 0; i < operand2; i++){
+				result = result * operand1;
+			}
+			break;
+		
+		default:
+			throw InvalidExpression("Invalid operands are there in place");
+	}
+	return result;
+}
+int calculateValue(string expression){
+	Stack<int> operands;
+	try{
+		for (int i = 0; i < expression.size(); i++){
+			int val = expression[i] - '0';
+
+			if (val > 0 && val < 10){
+				operands.push(val);
+			}
+			else{
+				int operand2 = operands.pop();
+				int operand1 = operands.pop();
+				
+				operands.push(calculateExpression(operand1 , operand2, expression[i]));
+			}
+		}
+	}
+	catch (Underflow ue){
+		throw InvalidExpression("Expresssion has more operands than possible");
+	}
+	if (operands.empty()) throw InvalidExpression("The expression has more operations than possible");
+	if (operands.getSize() > 1) throw InvalidExpression("The expression has more operands than possible");
+	return operands.pop();
+}
+
+
+
 int main(){
-    additionBignumbers();
+	try{
+		cout << calculateValue("237*+/") << endl;
+	}
+	catch (InvalidExpression ie){
+		cout << ie.what() << endl;
+	}
 	return 0;
 }
