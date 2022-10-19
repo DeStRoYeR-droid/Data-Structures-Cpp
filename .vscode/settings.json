@@ -9,6 +9,7 @@
     "xlocnum": "cpp",
     "xtr1common": "cpp",
     "ostream": "cpp",
-    "stdexcept": "cpp"
+    "stdexcept": "cpp",
+    "xlocale": "cpp"
   }
 }
