@@ -12,11 +12,11 @@ The following data structures and algorithms have been discussed so far -
     <summary> Sorting Algorithms
     </summary>
     <ul type = "disc">
-        <li>  Bubble sort (✔)
-        <li>  Insertion sort (✔)
-        <li>  Selection sort (✔)
-        <l1>  Bitonic sort (✔)
-        <l1>  Quick sort (✔)
+        <li>  Bubble sort (✔) <br />
+        <li>  Insertion sort (✔) <br />
+        <li>  Selection sort (✔) <br />
+        <l1>  Bitonic sort (✔) <br />
+        <l1>  Quick sort (✔) <br />
     </ul>
 </details>
 
