@@ -15,8 +15,8 @@ The following data structures and algorithms have been discussed so far -
         <li>  Bubble sort (✔) <br />
         <li>  Insertion sort (✔) <br />
         <li>  Selection sort (✔) <br />
-        <l1>  Bitonic sort (✔) <br />
-        <l1>  Quick sort (✔) <br />
+        <li>  Bitonic sort (✔) <br />
+        <li>  Quick sort (✔) <br />
     </ul>
 </details>
 
