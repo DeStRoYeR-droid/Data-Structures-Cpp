@@ -291,6 +291,8 @@ void additionBignumbers(){
     }
 }
 
+
+// Infix to postfix conversion
 int calculateExpression(int operand1, int operand2, char symbol){
 	int result;
 	switch(symbol){
@@ -316,9 +318,13 @@ int calculateExpression(int operand1, int operand2, char symbol){
 				result = result * operand1;
 			}
 			break;
+			
+		case '%':
+			result = operand1 % operand2;
+			break;
 		
 		default:
-			throw InvalidExpression("Invalid operands are there in place");
+			throw InvalidExpression("Invalid operators are there in place");
 	}
 	return result;
 }
@@ -342,16 +348,58 @@ int calculateValue(string expression){
 	catch (Underflow ue){
 		throw InvalidExpression("Expresssion has more operands than possible");
 	}
-	if (operands.empty()) throw InvalidExpression("The expression has more operations than possible");
 	if (operands.getSize() > 1) throw InvalidExpression("The expression has more operands than possible");
 	return operands.pop();
 }
-
-
+int precedence(char operation){
+	if (operation == '(') return -1;
+	else if (operation == '^') return 3;
+	else if (operation == '*' || operation == '/' || operation == '%') return 2;
+	else if (operation == '+' || operation == '-') return 1;
+	
+	else throw InvalidExpression("Invalid operator passed");
+}
+string infixToPostfix(string expression){
+	Stack<char> operations;
+	string result;
+	char cur_char;
+	for (int i = 0; i < expression.size(); i++){
+		cur_char = expression[i];
+		
+		if (cur_char >= '0' && cur_char <= '9') result += cur_char;
+		else if (cur_char == '(') operations.push(cur_char);
+		else if (cur_char == ')'){
+			while (operations.top() != '('){
+				result += operations.pop();
+			}
+			operations.pop();
+			operations.print();
+		}
+		else{
+			while (!operations.empty() && precedence(cur_char) <= precedence(operations.top())){
+				result += operations.pop();
+			}
+			operations.push(cur_char);
+		}
+	}
+	
+	while (!operations.empty()) result += operations.pop();
+	
+	return result;
+}
 
 int main(){
 	try{
-		cout << calculateValue("237*+/") << endl;
+		string infixExpression;
+		
+		cout << "Please enter your expression ";
+		cin >> infixExpression;
+		
+		string postfixExpression = infixToPostfix(infixExpression);
+		
+		cout << "Infix expression = " << infixExpression << endl;
+		cout << "Postfix expression = " << postfixExpression << endl;
+		cout << "Value of expression = " << calculateValue(postfixExpression) << endl;
 	}
 	catch (InvalidExpression ie){
 		cout << ie.what() << endl;
