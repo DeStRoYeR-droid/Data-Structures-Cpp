@@ -1,5 +1,7 @@
 #include <iostream>
 #include <exception>
+#include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -328,7 +330,7 @@ int calculateExpression(int operand1, int operand2, char symbol){
 	}
 	return result;
 }
-int calculateValue(string expression){
+int calculatePostfixValue(string expression){
 	Stack<int> operands;
 	try{
 		for (int i = 0; i < expression.size(); i++){
@@ -387,6 +389,65 @@ string infixToPostfix(string expression){
 	
 	return result;
 }
+void reverseString(string& expression){
+	for (int i = 0; i < expression.size()/2; i++){
+		swap(expression[i] , expression[expression.size() - (i+1)]);
+	}
+}
+string infixToPrefix(string expression){
+	Stack<char> operations;
+	string result;
+	char cur_char;
+
+	for (int i = expression.size() - 1; i >= 0; i--){
+		cur_char = expression[i];
+
+		if (cur_char >= '0' && cur_char <= '9') result += cur_char;
+		else if (cur_char == '(') operations.push(cur_char);
+		else if (cur_char == ')'){
+			while (operations.top() != '('){
+				result += operations.pop();
+			}
+			operations.pop();
+			operations.print();
+		}
+		else{
+			while (!operations.empty() && precedence(cur_char) <= precedence(operations.top())){
+				result += operations.pop();
+			}
+			operations.push(cur_char);
+		}
+	}
+	while (!operations.empty()) result += operations.pop();
+	cout << result << endl;
+	reverseString(result);
+	return result;
+}
+int calculatePrefixValue(string expression){
+	Stack<int> operands;
+	try{
+		for (int i = expression.size() - 1; i >= 0; i--){
+			int val = expression[i] - '0';
+
+			if (val > 0 && val < 10){
+				operands.push(val);
+			}
+			else{
+				int operand1 = operands.pop();
+				int operand2 = operands.pop();
+				
+				
+				operands.push(calculateExpression(operand1 , operand2, expression[i]));
+			}
+		}
+	}
+	catch (Underflow ue){
+		throw InvalidExpression("Expresssion has more operands than possible");
+	}
+	if (operands.getSize() > 1) throw InvalidExpression("The expression has more operands than possible");
+	return operands.pop();
+}
+
 
 int main(){
 	try{
@@ -395,11 +456,11 @@ int main(){
 		cout << "Please enter your expression ";
 		cin >> infixExpression;
 		
-		string postfixExpression = infixToPostfix(infixExpression);
+		string prefixExpression = infixToPrefix(infixExpression);
 		
 		cout << "Infix expression = " << infixExpression << endl;
-		cout << "Postfix expression = " << postfixExpression << endl;
-		cout << "Value of expression = " << calculateValue(postfixExpression) << endl;
+		cout << "Prefix expression = " << prefixExpression << endl;
+		cout << "Value of expression = " << calculatePrefixValue(prefixExpression) << endl;
 	}
 	catch (InvalidExpression ie){
 		cout << ie.what() << endl;

@@ -10,6 +10,7 @@
     "xtr1common": "cpp",
     "ostream": "cpp",
     "stdexcept": "cpp",
-    "xlocale": "cpp"
+    "xlocale": "cpp",
+    "algorithm": "cpp"
   }
 }
